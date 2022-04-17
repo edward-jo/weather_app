@@ -12,8 +12,19 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Weather')),
-      body: const Center(
-        child: Text('Hello'),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            TextButton(
+              onPressed: () {},
+              child: const Text('Get DateTime Data'),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text('Get Weather Data'),
+            ),
+          ],
+        ),
       ),
     );
   }
