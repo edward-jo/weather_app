@@ -23,7 +23,7 @@ class WeatherServiceImpl implements WeatherService {
       developer.log('Weather: \n${weather.toString()}');
       return WeatherModel(weather);
     } catch (e) {
-      return Future.error('No Weather Data( ${e.toString()} )');
+      return Future.error(e.toString());
     }
   }
 }

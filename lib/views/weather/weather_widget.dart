@@ -34,9 +34,8 @@ class _WeatherWidgetState extends State<WeatherWidget> {
       child: Selector<WeatherViewModel, String>(
         selector: (_, vm) => vm.cityName,
         builder: (_, cityName, __) {
-          _getWeatherStream = _weatherVM.getCurrentWeatherStream(
-            cityName,
-          );
+          _getWeatherStream = _weatherVM.getCurrentWeatherStream(cityName);
+
           return StreamBuilder<WeatherModel>(
               stream: _getWeatherStream,
               builder: (context, snapshot) {
@@ -47,10 +46,24 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
                 /// Show error message if occurred
                 if (snapshot.hasError) {
+                  final errorMessage = snapshot.error.toString();
+
+                  retryFunction() {
+                    setState(() => _getWeatherStream =
+                        _weatherVM.getCurrentWeatherStream(cityName));
+                  }
+
                   return Center(
-                    child: Text(
-                      snapshot.error.toString(),
-                      style: textTheme.bodyText1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(errorMessage, style: textTheme.bodyText1),
+                        TextButton(
+                          onPressed: retryFunction,
+                          child: const Text('Retry'),
+                        ),
+                      ],
                     ),
                   );
                 }
@@ -63,25 +76,25 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                 }
 
                 /// Show fetched weather info
-                return Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      /// Temperature & Description
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          _TemperatureWidget(
-                            temperature: weatherModel.temperature,
-                          ),
-                          _DescriptionWidget(
-                            description: weatherModel.description,
-                          )
-                        ],
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    /// Temperature & Icon
+                    Row(children: <Widget>[
+                      _TemperatureWidget(
+                        temperature: weatherModel.temperature,
                       ),
+                      _WeatherIconWidget(iconType: weatherModel.iconInfo)
+                    ]),
 
-                      /// Icon
-                      _WeatherIconWidget(iconType: weatherModel.iconInfo),
-                    ]);
+                    /// Description
+                    _DescriptionWidget(
+                      description: weatherModel.description,
+                      cityName: weatherModel.cityName,
+                    ),
+                  ],
+                );
               });
         },
       ),
@@ -144,20 +157,28 @@ class _TemperatureWidget extends StatelessWidget {
 /// Widget that shows weather description
 ///
 class _DescriptionWidget extends StatelessWidget {
-  const _DescriptionWidget({Key? key, this.description}) : super(key: key);
+  const _DescriptionWidget({Key? key, this.description, this.cityName})
+      : super(key: key);
 
   final String? description;
+  final String? cityName;
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = Theme.of(context).textTheme.headline6!.copyWith(
+    final descriptionStyle = Theme.of(context).textTheme.headline6!.copyWith(
           fontWeight: FontWeight.bold,
           color: Colors.black,
         );
+    final cityNameStyle = Theme.of(context).textTheme.caption;
 
-    return Container(
-      alignment: Alignment.center,
-      child: Text(description ?? 'No description', style: textStyle),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Text(description ?? 'No description', style: descriptionStyle),
+        const SizedBox(height: 5),
+        Text(cityName ?? 'No city name', style: cityNameStyle),
+      ],
     );
   }
 }
