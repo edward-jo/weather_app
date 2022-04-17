@@ -12,6 +12,16 @@ final ThemeData appTheme = ThemeData(
   /// primaryColorBrightness.
   primaryColorBrightness: Brightness.light,
 
+  // -- APP BAR --
+  /// All AppBarTheme properties are null by default. When null, the AppBar
+  /// compute its own default values, typically based on the overall theme's
+  /// ThemeData.colorScheme, ThemeData.textTheme, and ThemeData.iconTheme.
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.blue,
+    foregroundColor: Colors.white,
+    elevation: 0,
+  ),
+
   // -- TEXT THEME --
   /// If you specify textTheme in ThemeData() constructor, ThemeData merges it
   /// with defaultTextTheme
