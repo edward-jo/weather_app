@@ -22,7 +22,7 @@ class CityListItemWidget extends StatelessWidget {
 
     return GestureDetector(
       onTap: onPressed,
-      child: _CityListItemContainer(
+      child: _StyledCityListItemContainer(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
@@ -56,8 +56,8 @@ class CityListItemWidget extends StatelessWidget {
 
 /// Styled Container widget.
 ///
-class _CityListItemContainer extends StatelessWidget {
-  const _CityListItemContainer({Key? key, this.child}) : super(key: key);
+class _StyledCityListItemContainer extends StatelessWidget {
+  const _StyledCityListItemContainer({Key? key, this.child}) : super(key: key);
 
   final Widget? child;
 

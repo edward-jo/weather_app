@@ -46,10 +46,24 @@ class _WeatherWidgetState extends State<WeatherWidget> {
 
                 /// Show error message if occurred
                 if (snapshot.hasError) {
+                  final errorMessage = snapshot.error.toString();
+
+                  retryFunction() {
+                    setState(() => _getWeatherStream =
+                        _weatherVM.getCurrentWeatherStream(cityName));
+                  }
+
                   return Center(
-                    child: Text(
-                      snapshot.error.toString(),
-                      style: textTheme.bodyText1,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Text(errorMessage, style: textTheme.bodyText1),
+                        TextButton(
+                          onPressed: retryFunction,
+                          child: const Text('Retry'),
+                        ),
+                      ],
                     ),
                   );
                 }
@@ -73,6 +87,7 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                       ),
                       _WeatherIconWidget(iconType: weatherModel.iconInfo)
                     ]),
+
                     /// Description
                     _DescriptionWidget(
                       description: weatherModel.description,
