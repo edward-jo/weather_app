@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/views/weather/citylist_widget.dart';
 import 'package:weather_app/views/weather/datetime_widget.dart';
 import 'package:weather_app/views/weather/weather_widget.dart';
 
@@ -18,20 +19,20 @@ class _WeatherScreenState extends State<WeatherScreen> {
         color: Theme.of(context).primaryColor,
         padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         child: Column(
-          children: <Widget>[
-            const Expanded(
+          children: const <Widget>[
+            Expanded(
               child: DateTimeWidget(),
               flex: 4,
             ),
-            const Expanded(
+            Expanded(
               child: WeatherWidget(),
               flex: 4,
             ),
             Expanded(
-              child: Container(color: Colors.green),
+              child: CityListWidget(),
               flex: 2,
             ),
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
           ],
         ),
       ),
