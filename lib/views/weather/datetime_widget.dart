@@ -4,7 +4,7 @@ import 'package:weather_app/models/datetime_model.dart';
 import 'package:weather_app/view_models/datetime_viewmodel.dart';
 import 'package:weather_app/views/common/platform_circular_indicator.dart';
 
-/// Widget that show current weekday and date
+/// Widget that shows current weekday and date
 ///
 class DateTimeWidget extends StatefulWidget {
   const DateTimeWidget({Key? key}) : super(key: key);
