@@ -5,6 +5,8 @@ class WeatherModel {
 
   final Weather _weather;
 
+  String? get cityName => _weather.areaName;
+
   double get temperature => _weather.temperature?.celsius ?? 0;
 
   String? get description => _weather.weatherDescription;
