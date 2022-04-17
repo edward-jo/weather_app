@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/service_locator.dart';
 import 'package:weather_app/view_models/datetime_viewmodel.dart';
 import 'package:weather_app/view_models/weather_viewmodel.dart';
+import 'package:weather_app/views/common/platform_circular_indicator.dart';
 import 'package:weather_app/views/weather/weather_screen.dart';
 
 void main() async {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
             return Container(
               color: Colors.white,
               child: const Center(
-                child: CircularProgressIndicator(strokeWidth: 2.0),
+                child: PlatformCircularIndicator(),
               ),
             );
           }
