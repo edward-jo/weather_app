@@ -10,16 +10,25 @@ import 'package:weather_app/services/weather/weather_service.dart';
 import 'package:weather_app/services/weather/weather_service_impl.dart';
 import 'package:weather_app/services/worldclock/worldclock_service.dart';
 import 'package:weather_app/services/worldclock/worldclock_service_impl.dart';
+import 'package:weather_app/view_models/datetime_viewmodel.dart';
 
 final serviceLocator = GetIt.instance;
 
 void setupServiceLocator() {
-  serviceLocator.registerSingleton<WorldClockService>(WorldClockServiceImpl());
+  serviceLocator.registerSingleton<WorldClockService>(
+    WorldClockServiceImpl(),
+  );
 
   serviceLocator.registerSingleton<WeatherService>(() {
     final wf = WeatherFactory(weatherApiKey);
     return WeatherServiceImpl(wf);
   }());
+
+  serviceLocator.registerSingleton<DateTimeViewModel>(
+    DateTimeViewModel(
+      serviceLocator<WorldClockService>(),
+    ),
+  );
 
   // XXX: Test loading city list
   serviceLocator.registerSingletonAsync<List<City>>(() async {
