@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1138958,
+    "name": "Kabul",
+    "state": "",
+    "country": "AF",
+    "coord": {
+      "lon": 69.172333,
+      "lat": 34.52813
+    }
+  },
+  {
+    "id": 2761369,
+    "name": "Vienna",
+    "state": "",
+    "country": "AT",
+    "coord": {
+      "lon": 16.37208,
+      "lat": 48.208488
+    }
+  },
+  {
+    "id": 3911925,
+    "name": "La Paz",
+    "state": "",
+    "country": "BO",
+    "coord": {
+      "lon": -68.150002,
+      "lat": -16.5
+    }
+  },
+  {
+    "id": 2643741,
+    "name": "City of London",
+    "state": "",
+    "country": "GB",
+    "coord": {
+      "lon": -0.09184,
+      "lat": 51.512791
+    }
+  },
+  {
+    "id": 4140963,
+    "name": "Washington, D.C.",
+    "state": "DC",
+    "country": "US",
+    "coord": {
+      "lon": -77.036369,
+      "lat": 38.895111
+    }
+  },
+  {
+    "id": 5128581,
+    "name": "New York City",
+    "state": "NY",
+    "country": "US",
+    "coord": {
+      "lon": -74.005966,
+      "lat": 40.714272
+    }
+  }
+]
