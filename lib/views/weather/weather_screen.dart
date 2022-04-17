@@ -2,9 +2,8 @@ import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
-import 'package:weather_app/service_locator.dart';
-import 'package:weather_app/services/weather/weather_service.dart';
 import 'package:weather_app/view_models/datetime_viewmodel.dart';
+import 'package:weather_app/view_models/weather_viewmodel.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);
@@ -15,11 +14,13 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   late final DateTimeViewModel _dateTimeVM;
+  late final WeatherViewModel _weatherVM;
 
   @override
   void initState() {
     super.initState();
     _dateTimeVM = context.read<DateTimeViewModel>();
+    _weatherVM = context.read<WeatherViewModel>();
   }
 
   @override
@@ -39,8 +40,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             TextButton(
               onPressed: () async {
                 // XXX: Test weather data fetching
-                final stream = serviceLocator<WeatherService>()
-                    .getCurrentWeatherByCityName('Seoul');
+                final stream = _weatherVM.getCurrentWeatherStream('Seoul');
                 await for (var weather in stream) {
                   developer.log(weather.toString());
                 }

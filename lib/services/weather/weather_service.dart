@@ -1,5 +1,5 @@
-import 'package:weather/weather.dart';
+import 'package:weather_app/models/weather_model.dart';
 
 abstract class WeatherService {
-  Stream<Weather> getCurrentWeatherByCityName(String cityName);
+  Stream<WeatherModel> getCurrentWeatherByCityName(String cityName);
 }
