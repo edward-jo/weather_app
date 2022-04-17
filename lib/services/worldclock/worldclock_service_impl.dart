@@ -4,6 +4,7 @@ import 'dart:developer' as developer;
 import 'package:http/http.dart' as http;
 import 'package:weather_app/services/worldclock/worldclock.dart';
 import 'package:weather_app/services/worldclock/worldclock_service.dart';
+import 'package:weather_app/services/worldclock/worldclock_service_exception.dart';
 
 class WorldClockServiceImpl implements WorldClockService {
   final _host = 'worldclockapi.com';
@@ -15,8 +16,7 @@ class WorldClockServiceImpl implements WorldClockService {
     final response = await http.get(uri);
     developer.log('CurrentDateTime Response: ${response.body.toString()}');
     if (response.statusCode != 200) {
-      // TODO: create new exception
-      throw Exception('Failed to fetch current date & time');
+      throw WorldClockServiceException('Failed to fetch current date & time');
     }
     return WorldClock.fromJson(json.decode(response.body));
   }
