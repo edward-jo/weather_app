@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/service_locator.dart';
 import 'package:weather_app/views/weather/weather_screen.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(const MyApp());
 }
 
