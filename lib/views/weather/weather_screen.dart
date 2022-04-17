@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/service_locator.dart';
+import 'package:weather_app/services/worldclock/worldclock_service.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);
@@ -16,7 +18,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
         child: Column(
           children: <Widget>[
             TextButton(
-              onPressed: () {},
+              onPressed: () async {
+                await serviceLocator<WorldClockService>().getCurrentDateTime();
+              },
               child: const Text('Get DateTime Data'),
             ),
             TextButton(
