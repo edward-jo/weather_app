@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer' as developer;
 
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
@@ -11,6 +10,7 @@ import 'package:weather_app/services/weather/weather_service_impl.dart';
 import 'package:weather_app/services/worldclock/worldclock_service.dart';
 import 'package:weather_app/services/worldclock/worldclock_service_impl.dart';
 import 'package:weather_app/view_models/datetime_viewmodel.dart';
+import 'package:weather_app/view_models/weather_viewmodel.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -30,15 +30,14 @@ void setupServiceLocator() {
     ),
   );
 
-  // XXX: Test loading city list
-  serviceLocator.registerSingletonAsync<List<City>>(() async {
-    // TODO: Handle exception
+  serviceLocator.registerSingletonAsync<WeatherViewModel>(() async {
+    // Loading city list from json file
     final jsonStr = await rootBundle.loadString('assets/simple.city.list.json');
     final cityListJson = json.decode(jsonStr);
     final cityList = List<City>.from(cityListJson.map((e) => City.fromJson(e)));
-    for (final c in cityList) {
-      developer.log(c.toJson().toString());
-    }
-    return cityList;
+    // Weather service
+    final weatherService = serviceLocator<WeatherService>();
+
+    return WeatherViewModel(cityList, weatherService);
   });
 }
