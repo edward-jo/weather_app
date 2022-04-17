@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:weather_app/service_locator.dart';
 import 'package:weather_app/views/weather/weather_screen.dart';
 
-void main() {
+void main() async {
+  /// Load environment variables
+  await dotenv.load();
+
+  /// Setup services
   setupServiceLocator();
+
+  /// Bind and create widget tree
   runApp(const MyApp());
 }
 
