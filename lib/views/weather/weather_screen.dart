@@ -1,9 +1,8 @@
-import 'dart:developer' as developer;
-
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'package:weather_app/view_models/datetime_viewmodel.dart';
 import 'package:weather_app/view_models/weather_viewmodel.dart';
+import 'package:weather_app/views/weather/datetime_widget.dart';
 
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);
@@ -27,26 +26,24 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Weather')),
-      body: Center(
+      body: Container(
+        color: Theme.of(context).primaryColor,
+        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
         child: Column(
           children: <Widget>[
-            TextButton(
-              onPressed: () async {
-                final dateTime = await _dateTimeVM.fetchCurrentDateTime();
-                developer.log('${dateTime.weekday}, ${dateTime.date}');
-              },
-              child: const Text('Get DateTime Data'),
+            const Expanded(
+              child: DateTimeWidget(),
+              flex: 4,
             ),
-            TextButton(
-              onPressed: () async {
-                // XXX: Test weather data fetching
-                final stream = _weatherVM.getCurrentWeatherStream('Seoul');
-                await for (var weather in stream) {
-                  developer.log(weather.toString());
-                }
-              },
-              child: const Text('Get Weather Data'),
+            Expanded(
+              child: Container(color: Colors.red),
+              flex: 4,
             ),
+            Expanded(
+              child: Container(color: Colors.green),
+              flex: 2,
+            ),
+            const SizedBox(height: 20),
           ],
         ),
       ),
