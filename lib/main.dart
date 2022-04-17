@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/service_locator.dart';
+import 'package:weather_app/view_models/datetime_viewmodel.dart';
 import 'package:weather_app/views/weather/weather_screen.dart';
 
 void main() async {
@@ -19,12 +21,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Studypie',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: serviceLocator<DateTimeViewModel>(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Studypie',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: const WeatherScreen(),
       ),
-      home: const WeatherScreen(),
     );
   }
 }
