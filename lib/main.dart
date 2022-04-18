@@ -11,6 +11,8 @@ import 'package:weather_app/views/common/platform_circular_indicator.dart';
 import 'package:weather_app/views/themes/theme.dart';
 import 'package:weather_app/views/weather/weather_screen.dart';
 
+import 'constants.dart';
+
 void main() async {
   /// Load environment variables
   await dotenv.load();
@@ -28,7 +30,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: serviceLocator.allReady(timeout: const Duration(seconds: 10)),
+        future: serviceLocator.allReady(
+          timeout: const Duration(seconds: serviceSetupTimeoutSecs),
+        ),
         builder: (context, snapshot) {
           /// Show indicator until services are ready
           if (snapshot.connectionState != ConnectionState.done) {
