@@ -16,7 +16,14 @@ class CityListItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
-    final coordTextStyle = textTheme.caption!.copyWith(fontSize: 12);
+    final cityNameTextStyle = textTheme.bodyText1!.copyWith(
+      fontSize: 16,
+      color: Colors.white,
+    );
+    final cityInfoTextStyle = textTheme.caption!.copyWith(
+      fontSize: 12,
+      color: Colors.white,
+    );
     final latitude = 'lat: ${item.coord.lat.toStringAsFixed(2)}';
     final longitude = 'lon: ${item.coord.lon.toStringAsFixed(2)}';
 
@@ -30,8 +37,7 @@ class CityListItemWidget extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(item.name,
-                    style: textTheme.bodyText1!.copyWith(fontSize: 16)),
+                child: Text(item.name, style: cityNameTextStyle),
               ),
               flex: 1,
             ),
@@ -40,9 +46,9 @@ class CityListItemWidget extends StatelessWidget {
             Expanded(
               child: Column(
                 children: <Widget>[
-                  Text(item.country, style: textTheme.caption),
-                  Text(latitude, style: coordTextStyle),
-                  Text(longitude, style: coordTextStyle),
+                  Text(item.country, style: cityInfoTextStyle),
+                  Text(latitude, style: cityInfoTextStyle),
+                  Text(longitude, style: cityInfoTextStyle),
                 ],
               ),
               flex: 1,
@@ -69,7 +75,7 @@ class _StyledCityListItemContainer extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10.0),
       padding: const EdgeInsets.all(5.0),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.lightBlue,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: child,
