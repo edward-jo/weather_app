@@ -39,10 +39,25 @@ class _DateTimeWidgetState extends State<DateTimeWidget> {
 
             /// Show error message if occurred
             if (snapshot.hasError) {
+              final errorMessage = snapshot.error.toString();
+
+              retryFunction() {
+                setState(() {
+                  _fetchDateTimeFuture = _dateTimeVM.fetchCurrentDateTime();
+                });
+              }
+
               return Center(
-                child: Text(
-                  snapshot.error.toString(),
-                  style: textTheme.bodyText1,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(errorMessage, style: textTheme.bodyText1),
+                    TextButton(
+                      onPressed: retryFunction,
+                      child: const Text('retry'),
+                    ),
+                  ],
                 ),
               );
             }
