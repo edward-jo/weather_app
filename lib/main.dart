@@ -1,5 +1,8 @@
+import 'dart:developer' as developer;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/service_locator.dart';
 import 'package:weather_app/view_models/datetime_viewmodel.dart';
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: serviceLocator.allReady(),
+        future: serviceLocator.allReady(timeout: const Duration(seconds: 10)),
         builder: (context, snapshot) {
           /// Show indicator until services are ready
           if (snapshot.connectionState != ConnectionState.done) {
@@ -42,10 +45,7 @@ class MyApp extends StatelessWidget {
             return Container(
               color: Colors.white,
               child: Center(
-                child: Text(
-                  snapshot.error.toString(),
-                  textDirection: TextDirection.ltr,
-                ),
+                child: _BuilderError(error: snapshot.error!),
               ),
             );
           }
@@ -68,5 +68,35 @@ class MyApp extends StatelessWidget {
             ),
           );
         });
+  }
+}
+
+/// Widget that checks error type and show error message
+///
+class _BuilderError extends StatelessWidget {
+  const _BuilderError({Key? key, required this.error}) : super(key: key);
+
+  final Object error;
+
+  @override
+  Widget build(BuildContext context) {
+    String message;
+
+    if (error is WaitingTimeOutException) {
+      final exception = error as WaitingTimeOutException;
+      developer.log('Timeout: Not ready( ${exception.notReadyYet.length} )');
+      for (var e in exception.notReadyYet) {
+        developer.log(e);
+      }
+      message = 'Timeout error. Please restart app';
+    } else {
+      message = error.toString();
+    }
+
+    return Text(
+      message,
+      textDirection: TextDirection.ltr,
+      style: const TextStyle(color: Colors.black, fontSize: 16),
+    );
   }
 }
