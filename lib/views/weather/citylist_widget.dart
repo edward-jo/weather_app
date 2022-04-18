@@ -3,6 +3,8 @@ import 'package:provider/src/provider.dart';
 import 'package:weather_app/view_models/weather_viewmodel.dart';
 import 'package:weather_app/views/weather/citylistitem_widget.dart';
 
+/// Widget that shows list of [CityListItemWidget].
+///
 class CityListWidget extends StatefulWidget {
   const CityListWidget({Key? key}) : super(key: key);
 

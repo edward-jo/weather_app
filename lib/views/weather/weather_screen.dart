@@ -3,6 +3,9 @@ import 'package:weather_app/views/weather/citylist_widget.dart';
 import 'package:weather_app/views/weather/datetime_widget.dart';
 import 'package:weather_app/views/weather/weather_widget.dart';
 
+/// Widget that shows current date, weather, and city list.
+/// Weather info is changed by selecting city on [CityListWidget].
+///
 class WeatherScreen extends StatefulWidget {
   const WeatherScreen({Key? key}) : super(key: key);
 
