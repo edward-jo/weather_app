@@ -1,32 +1,22 @@
 [
   {
-    "id": 1138958,
-    "name": "Kabul",
+    "id": 1835847,
+    "name": "Seoul",
     "state": "",
-    "country": "AF",
+    "country": "KR",
     "coord": {
-      "lon": 69.172333,
-      "lat": 34.52813
+      "lon": 127.0,
+      "lat": 37.583328
     }
   },
   {
-    "id": 2761369,
-    "name": "Vienna",
-    "state": "",
-    "country": "AT",
+    "id": 5359777,
+    "name": "Irvine",
+    "state": "CA",
+    "country": "US",
     "coord": {
-      "lon": 16.37208,
-      "lat": 48.208488
-    }
-  },
-  {
-    "id": 3911925,
-    "name": "La Paz",
-    "state": "",
-    "country": "BO",
-    "coord": {
-      "lon": -68.150002,
-      "lat": -16.5
+      "lon": -117.823112,
+      "lat": 33.66946
     }
   },
   {
@@ -57,6 +47,76 @@
     "coord": {
       "lon": -74.005966,
       "lat": 40.714272
+    }
+  },
+  {
+    "id": 1819729,
+    "name": "Hong Kong",
+    "state": "",
+    "country": "HK",
+    "coord": {
+      "lon": 114.157692,
+      "lat": 22.285521
+    }
+  },
+  {
+    "id": 1850147,
+    "name": "Tokyo",
+    "state": "",
+    "country": "JP",
+    "coord": {
+      "lon": 139.691711,
+      "lat": 35.689499
+    }
+  },
+  {
+    "id": 1796236,
+    "name": "Shanghai",
+    "state": "",
+    "country": "CN",
+    "coord": {
+      "lon": 121.458061,
+      "lat": 31.222219
+    }
+  },
+  {
+    "id": 1816670,
+    "name": "Beijing",
+    "state": "",
+    "country": "CN",
+    "coord": {
+      "lon": 116.397232,
+      "lat": 39.907501
+    }
+  },
+  {
+    "id": 1138958,
+    "name": "Kabul",
+    "state": "",
+    "country": "AF",
+    "coord": {
+      "lon": 69.172333,
+      "lat": 34.52813
+    }
+  },
+  {
+    "id": 2761369,
+    "name": "Vienna",
+    "state": "",
+    "country": "AT",
+    "coord": {
+      "lon": 16.37208,
+      "lat": 48.208488
+    }
+  },
+  {
+    "id": 3911925,
+    "name": "La Paz",
+    "state": "",
+    "country": "BO",
+    "coord": {
+      "lon": -68.150002,
+      "lat": -16.5
     }
   }
 ]
