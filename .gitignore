@@ -48,3 +48,5 @@ app.*.map.json
 # Ed
 .fvm
 #.env
+ios/Podfile
+ios/Podfile.lock
