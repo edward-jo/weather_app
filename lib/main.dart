@@ -1,6 +1,7 @@
 import 'dart:developer' as developer;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +20,11 @@ void main() async {
 
   /// Setup services
   setupServiceLocator();
+
+  /// Set orientation
+  await SystemChrome.setPreferredOrientations(
+    <DeviceOrientation>[DeviceOrientation.portraitUp],
+  );
 
   /// Bind and create widget tree
   runApp(const MyApp());
